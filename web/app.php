@@ -67,6 +67,8 @@ $HCSF = new \HaaseIT\HCSF\HCSF();
 
 $P = $HCSF->init();
 
+$serviceManager = $HCSF->getServiceManager();
+
 $aP = \HaaseIT\HCSF\Helper::generatePage($serviceManager, $P);
 
 $response = new \Zend\Diactoros\Response();
