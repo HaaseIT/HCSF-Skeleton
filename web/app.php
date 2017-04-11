@@ -50,7 +50,7 @@ $P = $HCSF->init();
 
 $serviceManager = $HCSF->getServiceManager();
 
-$aP = \HaaseIT\HCSF\Helper::generatePage($serviceManager, $P);
+$aP = $HCSF->generatePage($P);
 
 $response = new \Zend\Diactoros\Response();
 $response = $response->withStatus($P->iStatus);
