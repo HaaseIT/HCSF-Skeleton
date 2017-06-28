@@ -18,34 +18,23 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-ini_set('display_errors', 0);
-ini_set('xdebug.overload_var_dump', 0);
-ini_set('xdebug.var_display_max_depth', 10);
-ini_set('html_errors', 0);
+//ini_set('display_errors', 0);
+//ini_set('xdebug.overload_var_dump', 0);
+//ini_set('xdebug.var_display_max_depth', 10);
+//ini_set('html_errors', 0);
 
 error_reporting(E_ALL);
 
 mb_internal_encoding('UTF-8');
-header("Content-Type: text/html; charset=UTF-8");
+//header("Content-Type: text/html; charset=UTF-8");
 
 if (ini_get('session.auto_start') == 1) {
     die('Please disable session.autostart for this to work.');
 }
 
-define("PATH_BASEDIR", __DIR__.'/../');
-define("PATH_DOCROOT", PATH_BASEDIR.'web/');
+require_once dirname(__DIR__).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 
-define("PATH_CACHE", PATH_BASEDIR.'cache/');
-define("DIRNAME_TEMPLATECACHE", 'templates');
-define("PATH_TEMPLATECACHE", PATH_CACHE.DIRNAME_TEMPLATECACHE);
-define("PATH_PURIFIERCACHE", PATH_CACHE.'htmlpurifier/');
-define("DIRNAME_GLIDECACHE", 'glide');
-define("PATH_GLIDECACHE", PATH_CACHE.DIRNAME_GLIDECACHE);
-define("PATH_LOGS", PATH_BASEDIR.'hcsflogs/');
-
-require_once __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
-
-$HCSF = new \HaaseIT\HCSF\HCSF();
+$HCSF = new \HaaseIT\HCSF\HCSF(dirname(__DIR__));
 $P = $HCSF->init();
 
 $serviceManager = $HCSF->getServiceManager();
@@ -61,7 +50,7 @@ if (count($aP['headers'])) {
     }
 }
 
-if ($aP['customroottemplate'] != '') {
+if (!empty($aP['customroottemplate'])) {
     $response->getBody()->write($serviceManager->get('twig')->render($aP['customroottemplate'], $aP));
 } else {
     $response->getBody()->write($serviceManager->get('twig')->render(\HaaseIT\HCSF\HelperConfig::$core["template_base"], $aP));
