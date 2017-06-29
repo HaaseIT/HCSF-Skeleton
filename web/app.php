@@ -38,6 +38,7 @@ $HCSF = new \HaaseIT\HCSF\HCSF(dirname(__DIR__));
 $P = $HCSF->init();
 
 $serviceManager = $HCSF->getServiceManager();
+$config = $serviceManager->get('config');
 
 $aP = $HCSF->generatePage($P);
 
@@ -53,7 +54,7 @@ if (count($aP['headers'])) {
 if (!empty($aP['customroottemplate'])) {
     $response->getBody()->write($serviceManager->get('twig')->render($aP['customroottemplate'], $aP));
 } else {
-    $response->getBody()->write($serviceManager->get('twig')->render(\HaaseIT\HCSF\HelperConfig::$core["template_base"], $aP));
+    $response->getBody()->write($serviceManager->get('twig')->render($config->getCore("template_base"), $aP));
 }
 
 $emitter = new \Zend\Diactoros\Response\SapiEmitter();
