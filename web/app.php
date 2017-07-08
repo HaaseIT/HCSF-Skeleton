@@ -43,7 +43,7 @@ $config = $serviceManager->get('config');
 $aP = $HCSF->generatePage($P);
 
 $response = new \Zend\Diactoros\Response();
-$response = $response->withStatus($P->iStatus);
+$response = $response->withStatus($P->getStatus());
 
 if (count($aP['headers'])) {
     foreach ($aP['headers'] as $header => $value) {
@@ -51,11 +51,18 @@ if (count($aP['headers'])) {
     }
 }
 
-if (!empty($aP['customroottemplate'])) {
-    $response->getBody()->write($serviceManager->get('twig')->render($aP['customroottemplate'], $aP));
+$response = $response->withHeader('Content-Type', $P->getContenttype());
+
+if ($P->isRenderwithtemplate()) {
+    if (!empty($aP['customroottemplate'])) {
+        $response->getBody()->write($serviceManager->get('twig')->render($aP['customroottemplate'], $aP));
+    } else {
+        $response->getBody()->write($serviceManager->get('twig')->render($config->getCore("template_base"), $aP));
+    }
 } else {
-    $response->getBody()->write($serviceManager->get('twig')->render($config->getCore("template_base"), $aP));
+    $response->getBody()->write($aP['content']);
 }
+
 
 $emitter = new \Zend\Diactoros\Response\SapiEmitter();
 $emitter->emit($response);
