@@ -18,6 +18,16 @@
   "license": "GPL-3.0+",
   "require": {
     "haaseit/hcsf": "dev-master",
-    "roave/security-advisories": "dev-master"
+    "roave/security-advisories": "dev-master",
+    "bower-asset/bootstrap": "^4.0.0",
+    "bower-asset/jquery": "^3.2.1",
+    "bower-asset/popper.js": "^1.14.1"
+  },
+  "config": {
+    "fxp-asset": {
+      "installer-paths": {
+        "bower-asset-library": "web/_assets/vendor"
+      }
+    }
   }
 }
