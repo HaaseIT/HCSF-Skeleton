@@ -21,16 +21,22 @@ email_orderconfirmation_embed_itemimages_glideparams:
 email_orderconfirmation_embed_itemimages_method: glide # glide or path
 items_orderdirection_default: ASC # ASC or DESC
 paypal:
-business: paypalseller@domain.tld
-url: 'https://www.sandbox.paypal.com/de/cgi-bin/webscr'
-auth_token: XXXXXXXXXXXXX
-currency_id: EUR
+  business: paypalseller@domain.tld
+  url: 'https://www.sandbox.paypal.com/de/cgi-bin/webscr'
+  auth_token: XXXXXXXXXXXXX
+  currency_id: EUR
 paypal_interactive: true
 sofortueberweisung:
-user_id: '12345'
-project_id: '12345'
-currency_id: EUR
+  user_id: '12345'
+  project_id: '12345'
+  currency_id: EUR
+paypalrestv1:
+  business: paypalseller@domain.tld
+  url: 'https://api.sandbox.paypal.com' # Prod: https://api.paypal.com
+  clientid: XXXXXXXXXXXXX
+  secret: XXXXXXXXXXXX
 paymentmethods:
+  - paypalrestv1
   - paypal
   - sofortueberweisung
   - nachnahme
@@ -57,8 +63,10 @@ custom_order_fields:
   - size
 itemdetail_suggestions: 8
 itemdetail_suggestions_shuffle: true
+itemtext_enable_purifier: true
 itemtext_unsafe_html_whitelist: '' # example: 'td[attr],input[attr1|attr2],form'
 itemtext_loose_filtering: false
+itemgrouptext_enable_purifier: true
 itemgrouptext_unsafe_html_whitelist: '' # example: 'td[attr],input[attr1|attr2],form'
 itemgrouptext_loose_filtering: false
 minimumorderamountnet: 0
