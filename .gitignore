@@ -6,3 +6,8 @@ config/customer.yml
 config/navigation.yml
 config/secrets.yml
 config/shop.yml
+customization/*
+!customization/classes/readme.md
+!customization/pages/readme.md
+!customization/views/readme.md
+!customization/routes.dist.yml

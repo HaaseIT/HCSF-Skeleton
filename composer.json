@@ -29,5 +29,10 @@
         "bower-asset-library": "web/_assets/vendor"
       }
     }
+  },
+  "autoload": {
+    "psr-4": {
+      "HaaseIT\\HCSF\\Custom\\" : "customization/classes/"
+    }
   }
 }
