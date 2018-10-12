@@ -1,0 +1,6 @@
+literal:
+  /_misc/some-file.html: "Custom\\Controllername"
+regex:
+  -
+    regex: '/_misc/whatever/(?<index>[a-zA-Z0-9_-]+)'
+    controller: "Custom\\Anothercontroller"

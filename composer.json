@@ -32,7 +32,8 @@
   },
   "autoload": {
     "psr-4": {
-      "HaaseIT\\HCSF\\Custom\\" : "customization/classes/"
+      "HaaseIT\\HCSF\\Custom\\" : "customization/src/Classes",
+      "HaaseIT\\HCSF\\Controller\\Custom\\" : "customization/src/Controller"
     }
   }
 }

@@ -1,4 +1,5 @@
 .idea
+.vagrant
 vendor
 config/core.yml
 config/countries.yml
@@ -7,7 +8,9 @@ config/navigation.yml
 config/secrets.yml
 config/shop.yml
 customization/*
-!customization/classes/readme.md
+!customization/src/readme.md
+!customization/src/Classes/readme.md
+!customization/src/Controller/readme.md
 !customization/pages/readme.md
 !customization/views/readme.md
 !customization/routes.dist.yml
