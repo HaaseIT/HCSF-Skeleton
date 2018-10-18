@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
     wget -q -O- https://packages.sury.org/php/apt.gpg | apt-key add -
     echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list
     apt-get update
-    apt-get install -y apache2 php7.2 php7.2-cli php7.2-common php7.2-curl php7.2-gd php7.2-json php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-readline php7.2-xml libapache2-mod-php7.2 php7.2-xdebug php7.2-bcmath vim
+    apt-get install -y apache2 php7.2 php7.2-cli php7.2-common php7.2-curl php7.2-gd php7.2-json php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-readline php7.2-xml libapache2-mod-php7.2 php7.2-xdebug php7.2-bcmath vim curl git zip unzip
     a2enmod rewrite
     sed -i 's+DocumentRoot /var/www/html+DocumentRoot /var/www/html/web+g' /etc/apache2/sites-enabled/000-default.conf
     echo "<Directory /var/www/html>" >> /etc/apache2/sites-enabled/000-default.conf
@@ -77,6 +77,11 @@ Vagrant.configure("2") do |config|
     echo "</Directory>" >> /etc/apache2/sites-enabled/000-default.conf
     echo "xdebug.remote_enable = On" >> /etc/php/7.2/apache2/conf.d/20-xdebug.ini
     echo "xdebug.remote_connect_back = On" >> /etc/php/7.2/apache2/conf.d/20-xdebug.ini
+    curl -Ss https://getcomposer.org/installer | php
+    mv composer.phar /usr/bin/composer
+    su vagrant
+    composer global require "fxp/composer-asset-plugin:~1.3"
+    exit
     systemctl restart apache2
   SHELL
 end
