@@ -64,8 +64,8 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    apt update
-    apt install apt-transport-https
+    apt-get update
+    apt-get install apt-transport-https
     wget -q -O- https://packages.sury.org/php/apt.gpg | apt-key add -
     echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list
     apt-get update
