@@ -17,7 +17,7 @@
   ],
   "license": "GPL-3.0+",
   "require": {
-    "haaseit/hcsf": "dev-master",
+    "haaseit/hcsf": "3.0.0-beta1",
     "roave/security-advisories": "dev-master",
     "bower-asset/bootstrap": "^4.0.0",
     "bower-asset/jquery": "^3.2.1",
